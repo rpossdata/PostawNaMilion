@@ -52,4 +52,8 @@ public class Particle {
         gc.setFill(color);
         gc.fillOval(x, y, size, size);
     }
+
+    public boolean isConfetti() {
+        return false;
+    }
 }
