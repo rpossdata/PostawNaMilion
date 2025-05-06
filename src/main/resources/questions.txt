@@ -1,0 +1,500 @@
+Poziom: 1
+Pytanie: Jaka jest stolica Polski?
+Odpowiedzi: Warszawa|Kraków|Gdańsk|Wrocław
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Ile wynosi 2 + 2?
+Odpowiedzi: 4|3|5|6
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Jakiego koloru jest banan?
+Odpowiedzi: Żółty|Czerwony|Zielony|Niebieski
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: W którym roku odkryto Amerykę?
+Odpowiedzi: 1492|1600|1776|1453
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Jak nazywa się największy ocean na Ziemi?
+Odpowiedzi: Pacyfik|Atlantycki|Indyjski|Arktyczny
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Ile nóg ma pająk?
+Odpowiedzi: 8|6|10|4
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Kto napisał "Pana Tadeusza"?
+Odpowiedzi: Adam Mickiewicz|Juliusz Słowacki|Henryk Sienkiewicz|Stanisław Wyspiański
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Jak nazywa się stolica Francji?
+Odpowiedzi: Paryż|Londyn|Berlin|Rzym
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: Jakiego zwierzęcia symbolem jest orzeł?
+Odpowiedzi: Polska|Rosja|Niemcy|Austria
+Poprawna: 0
+---
+Poziom: 1
+Pytanie: W której dyscyplinie sportu używa się rakiety?
+Odpowiedzi: Tenis|Piłka nożna|Koszykówka|Siatkówka
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Kto był pierwszym prezydentem USA?
+Odpowiedzi: George Washington|Abraham Lincoln|Thomas Jefferson|John Adams
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Jak nazywa się najdłuższa rzeka w Europie?
+Odpowiedzi: Wołga|Dniepr|Dunaj|Ren
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Ile planet znajduje się w Układzie Słonecznym?
+Odpowiedzi: 8|9|7|10
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Kto namalował "Mona Lisę"?
+Odpowiedzi: Leonardo da Vinci|Michelangelo|Rafael|Vincent van Gogh
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Jak nazywa się jednostka mocy w układzie SI?
+Odpowiedzi: Wat|Joule|Newton|Amper
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: W którym mieście znajduje się Koloseum?
+Odpowiedzi: Rzym|Ateny|Lizbona|Madryt
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Jak nazywa się pierwiastek chemiczny o symbolu C?
+Odpowiedzi: Węgiel|Tlen|Wodór|Azot
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Kto napisał "Romeo i Julię"?
+Odpowiedzi: William Shakespeare|Charles Dickens|Jane Austen|Mark Twain
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: W którym roku zakończyła się II wojna światowa?
+Odpowiedzi: 1945|1939|1918|1950
+Poprawna: 0
+---
+Poziom: 2
+Pytanie: Jak nazywa się najszybszy ptak na świecie?
+Odpowiedzi: Sokół wędrowny|Orzeł|Struś|Kondor
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Jak nazywa się stolica Japonii?
+Odpowiedzi: Tokio|Kioto|Osaka|Hiroshima
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Ile wynosi liczba Pi (przybliżenie)?
+Odpowiedzi: 3.14|2.71|1.41|4.20
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Kto odkrył teorię względności?
+Odpowiedzi: Albert Einstein|Isaac Newton|Galileusz|Nikola Tesla
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Jak nazywa się największa pustynia na Ziemi?
+Odpowiedzi: Sahara|Gobi|Kalahari|Atakama
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: W którym kraju znajduje się Machu Picchu?
+Odpowiedzi: Peru|Meksyk|Brazylia|Chile
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Jak nazywa się jednostka masy w układzie SI?
+Odpowiedzi: Kilogram|Gram|Newton|Joule
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Kto był autorem "Boskiej Komedii"?
+Odpowiedzi: Dante Alighieri|Giovanni Boccaccio|Petrarka|Geoffrey Chaucer
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Jak nazywa się gaz o symbolu Ne?
+Odpowiedzi: Neon|Hel|Tlen|Xenon
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: W którym roku zburzono Mur Berliński?
+Odpowiedzi: 1989|1991|1975|1961
+Poprawna: 0
+---
+Poziom: 3
+Pytanie: Kto wygrał Tour de France w 2020 roku?
+Odpowiedzi: Tadej Pogačar|Chris Froome|Geraint Thomas|Egan Bernal
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Kto był pierwszym człowiekiem w kosmosie?
+Odpowiedzi: Jurij Gagarin|Neil Armstrong|Buzz Aldrin|Alan Shepard
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Jak nazywa się najwyższy szczyt świata?
+Odpowiedzi: Mount Everest|K2|Kangchenjunga|Lhotse
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Ile chromosomów ma człowiek?
+Odpowiedzi: 46|48|44|50
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Jak nazywa się stolica Australii?
+Odpowiedzi: Canberra|Sydney|Melbourne|Perth
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Kto napisał "Zbrodnię i karę"?
+Odpowiedzi: Fiodor Dostojewski|Lew Tołstoj|Anton Czechow|Iwan Turgieniew
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Jak nazywa się pierwiastek o symbolu Ag?
+Odpowiedzi: Srebro|Złoto|Żelazo|Miedź
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: W którym roku wynaleziono żarówkę?
+Odpowiedzi: 1879|1900|1850|1920
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Jak nazywa się stolica Egiptu?
+Odpowiedzi: Kair|Aleksandria|Giza|Luksor
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: Ile wynosi prędkość światła w próżni (w km/s)?
+Odpowiedzi: 300000|150000|450000|600000
+Poprawna: 0
+---
+Poziom: 4
+Pytanie: W jakiej dyscyplinie sportowej specjalizuje się Usain Bolt?
+Odpowiedzi: Biegi krótkodystansowe|Skok w dal|Pływanie|Kolarstwo
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Jak nazywa się stolica Kanady?
+Odpowiedzi: Ottawa|Toronto|Vancouver|Montreal
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Kto odkrył penicylinę?
+Odpowiedzi: Alexander Fleming|Louis Pasteur|Robert Koch|Jonas Salk
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Jak nazywa się najdłuższa rzeka na świecie?
+Odpowiedzi: Nil|Amazonka|Jangcy|Missisipi
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: W którym roku człowiek wylądował na Księżycu?
+Odpowiedzi: 1969|1972|1965|1980
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Jak nazywa się jednostka energii w układzie SI?
+Odpowiedzi: Joule|Wat|Newton|Pascal
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Kto napisał "Władcę Pierścieni"?
+Odpowiedzi: J.R.R. Tolkien|C.S. Lewis|George R.R. Martin|J.K. Rowling
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Jak nazywa się pierwiastek o symbolu Na?
+Odpowiedzi: Sód|Potas|Wapń|Magnez
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: W którym kraju znajduje się Taj Mahal?
+Odpowiedzi: Indie|Pakistan|Bangladesz|Sri Lanka
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Ile wynosi kąt pełny w stopniach?
+Odpowiedzi: 360|180|90|270
+Poprawna: 0
+---
+Poziom: 5
+Pytanie: Kto jest reżyserem filmu "Titanic" z 1997 roku?
+Odpowiedzi: James Cameron|Steven Spielberg|Christopher Nolan|Martin Scorsese
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Kto był autorem teorii ewolucji przez dobór naturalny?
+Odpowiedzi: Charles Darwin|Gregor Mendel|Alfred Wallace|Thomas Huxley
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Jak nazywa się stolica RPA?
+Odpowiedzi: Pretoria|Kapsztad|Johannesburg|Durban
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Ile wynosi stała grawitacji na Ziemi (w m/s²)?
+Odpowiedzi: 9.81|12.5|6.67|15.2
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: W którym roku podpisano traktat wersalski?
+Odpowiedzi: 1919|1923|1914|1939
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Jak nazywa się pierwiastek o symbolu K?
+Odpowiedzi: Potas|Sód|Wapń|Magnez
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Kto napisał "1984"?
+Odpowiedzi: George Orwell|Aldous Huxley|Ray Bradbury|Philip K. Dick
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Jak nazywa się stolica Argentyny?
+Odpowiedzi: Buenos Aires|Córdoba|Mendoza|Rosario
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: W którym mieście znajduje się Statua Wolności?
+Odpowiedzi: Nowy Jork|Waszyngton|Boston|Filadelfia
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: Ile wynosi liczba Avogadra (w mol⁻¹)?
+Odpowiedzi: 6.022x10²³|3.14x10²³|1.67x10²³|9.81x10²³
+Poprawna: 0
+---
+Poziom: 6
+Pytanie: W jakiej dyscyplinie sportowej zdobyła złoto Simone Biles?
+Odpowiedzi: Gimnastyka artystyczna|Pływanie|Łyżwiarstwo figurowe|Tenis
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Jak nazywa się stolica Meksyku?
+Odpowiedzi: Meksyk|Guadalajara|Monterrey|Puebla
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Kto odkrył prawo powszechnego ciążenia?
+Odpowiedzi: Isaac Newton|Albert Einstein|Galileusz|Johannes Kepler
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Jak nazywa się najdłuższy łańcuch górski na świecie?
+Odpowiedzi: Andy|Himalaje|Alpy|Kordyliery
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: W którym roku rozpoczęła się rewolucja francuska?
+Odpowiedzi: 1789|1815|1756|1848
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Jak nazywa się pierwiastek o symbolu Pb?
+Odpowiedzi: Ołów|Cyna|Rtęć|Kadmium
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Kto napisał "Dziady"?
+Odpowiedzi: Adam Mickiewicz|Juliusz Słowacki|Zygmunt Krasiński|Cyprian Norwid
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Jak nazywa się stolica Turcji?
+Odpowiedzi: Ankara|Stambuł|Izmir|Bursa
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Ile wynosi masa elektronu (w kg)?
+Odpowiedzi: 9.11x10⁻³¹|1.67x10⁻²⁷|2.45x10⁻³⁰|5.23x10⁻³²
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: W którym kraju znajduje się Angkor Wat?
+Odpowiedzi: Kambodża|Tajlandia|Wietnam|Laos
+Poprawna: 0
+---
+Poziom: 7
+Pytanie: Kto skomponował "Cztery pory roku"?
+Odpowiedzi: Antonio Vivaldi|Johann Sebastian Bach|Ludwig van Beethoven|Wolfgang Amadeusz Mozart
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Jak nazywa się stolica Nigerii?
+Odpowiedzi: Abudża|Lagos|Kano|Ibadan
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Kto odkrył strukturę DNA?
+Odpowiedzi: Watson i Crick|Mendel|Pasteur|Franklin
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Jak nazywa się największe jezioro na świecie?
+Odpowiedzi: Morze Kaspijskie|Bajkał|Wiktorii|Michigan
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: W którym roku wynaleziono telefon?
+Odpowiedzi: 1876|1890|1860|1900
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Jak nazywa się pierwiastek o symbolu Hg?
+Odpowiedzi: Rtęć|Ołów|Cyna|Kadmium
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Kto napisał "Sto lat samotności"?
+Odpowiedzi: Gabriel García Márquez|Mario Vargas Llosa|Julio Cortázar|Isabel Allende
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Jak nazywa się stolica Tajlandii?
+Odpowiedzi: Bangkok|Chiang Mai|Phuket|Krabi
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Ile wynosi stała Plancka (w J·s)?
+Odpowiedzi: 6.626x10⁻³⁴|3.14x10⁻³⁴|1.67x10⁻³⁴|9.81x10⁻³⁴
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: W którym kraju znajduje się Petra?
+Odpowiedzi: Jordania|Egipt|Syria|Irak
+Poprawna: 0
+---
+Poziom: 8
+Pytanie: Kto jest twórcą gry "Tetris"?
+Odpowiedzi: Aleksiej Pażytnow|Shigeru Miyamoto|Will Wright|Sid Meier
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Jak nazywa się stolica Wenezueli?
+Odpowiedzi: Caracas|Maracaibo|Valencia|Barquisimeto
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Kto sformułował prawa ruchu planet?
+Odpowiedzi: Johannes Kepler|Isaac Newton|Galileusz|Tycho Brahe
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Jak nazywa się najdłuższa rzeka w Ameryce Południowej?
+Odpowiedzi: Amazonka|Parana|Orinoko|Magdalena
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: W którym roku podpisano Deklarację Niepodległości USA?
+Odpowiedzi: 1776|1783|1765|1791
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Jak nazywa się pierwiastek o symbolu U?
+Odpowiedzi: Uran|Pluton|Neptun|Rad
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Kto napisał "Ulissesa"?
+Odpowiedzi: James Joyce|Virginia Woolf|Ernest Hemingway|William Faulkner
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Jak nazywa się stolica Filipin?
+Odpowiedzi: Manila|Cebu|Davao|Quezon City
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Ile wynosi stała gazowa (w J/(mol·K))?
+Odpowiedzi: 8.314|3.142|6.022|9.807
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: W którym kraju znajduje się Wielka Rafa Koralowa?
+Odpowiedzi: Australia|Indonezja|Filipiny|Malediwy
+Poprawna: 0
+---
+Poziom: 9
+Pytanie: Kto był reżyserem filmu "Ojciec chrzestny"?
+Odpowiedzi: Francis Ford Coppola|Martin Scorsese|Steven Spielberg|Woody Allen
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Jak nazywa się stolica Mongolii?
+Odpowiedzi: Ułan Bator|Charchorin|Erdenet|Sajnshand
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Kto odkrył bozon Higgsa?
+Odpowiedzi: Peter Higgs|Stephen Hawking|Richard Feynman|Murray Gell-Mann
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Jak nazywa się największy wulkan na Ziemi?
+Odpowiedzi: Mauna Loa|Etna|Vesuvius|Kilimandżaro
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: W którym roku rozpoczęła się rewolucja październikowa?
+Odpowiedzi: 1917|1921|1905|1934
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Jak nazywa się pierwiastek o symbolu Rn?
+Odpowiedzi: Radon|Rad|Xenon|Krypton
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Kto napisał "W poszukiwaniu straconego czasu"?
+Odpowiedzi: Marcel Proust|André Gide|Albert Camus|Jean-Paul Sartre
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Jak nazywa się stolica Bhutanu?
+Odpowiedzi: Thimphu|Paro|Punakha|Jakar
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Ile wynosi masa neutrina (przybliżenie, w eV/c²)?
+Odpowiedzi: 0.1|1.0|10.0|100.0
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: W którym kraju znajduje się Chichen Itza?
+Odpowiedzi: Meksyk|Gwatemala|Belize|Honduras
+Poprawna: 0
+---
+Poziom: 10
+Pytanie: Kto był reżyserem filmu "2001: Odyseja kosmiczna"?
+Odpowiedzi: Stanley Kubrick|Ridley Scott|George Lucas|James Cameron
+Poprawna: 0
+---
