@@ -28,11 +28,11 @@ public class UIFactory {
     private Pane[] answerDropPanes = new Pane[4];
     private Label[] answerStakeLabels = new Label[4];
     private Button[] allInButtons = new Button[4];
-    private Button lifeline5050, lifelineAudience, lifelinePhone, confirmButton;
+    private Button lifeline5050, lifelineAudience, lifelinePhone, confirmButton, surrenderButton;
     private ProgressBar timerProgress, levelProgress;
     private Pane banknoteStackPane;
     private BanknoteManager banknoteManager;
-    private GameController gameController; // Nowe pole do przechowywania instancji GameController
+    private GameController gameController;
 
     public UIFactory(BanknoteManager banknoteManager, GameController gameController) {
         this.banknoteManager = banknoteManager;
@@ -67,6 +67,16 @@ public class UIFactory {
         timerProgress = new ProgressBar(1.0);
         timerProgress.prefWidthProperty().bind(gameContent.maxWidthProperty().multiply(0.2));
         timerProgress.setStyle("-fx-pref-height: 25; -fx-accent: #00ff88; -fx-background-color: #333; -fx-background-radius: 5;");
+        timerProgress.progressProperty().addListener((obs, oldVal, newVal) -> {
+            double progress = newVal.doubleValue();
+            if (progress <= 0.1) {
+                timerProgress.setStyle("-fx-pref-height: 25; -fx-accent: #ff0000; -fx-background-color: #333; -fx-background-radius: 5;");
+            } else if (progress <= 0.25) {
+                timerProgress.setStyle("-fx-pref-height: 25; -fx-accent: #ff5555; -fx-background-color: #333; -fx-background-radius: 5;");
+            } else {
+                timerProgress.setStyle("-fx-pref-height: 25; -fx-accent: #00ff88; -fx-background-color: #333; -fx-background-radius: 5;");
+            }
+        });
 
         levelLabel = new Label("Poziom: 1");
         levelLabel.setStyle("-fx-font-size: 16pt; -fx-font-weight: bold; -fx-text-fill: #ffffff;");
@@ -190,8 +200,10 @@ public class UIFactory {
         lifelinePhone.setTooltip(new Tooltip("Telefon do przyjaciela"));
         confirmButton = createStyledButton("\u2705", e -> gameController.confirmAnswer());
         confirmButton.setTooltip(new Tooltip("Potwierdź odpowiedź"));
+        surrenderButton = createStyledButton("\uD83D\uDEA9", e -> gameController.surrender());
+        surrenderButton.setTooltip(new Tooltip("Poddaj się"));
 
-        bottomPanel.getChildren().addAll(moneyLabel, banknoteStackPane, lifeline5050, lifelineAudience, lifelinePhone, confirmButton);
+        bottomPanel.getChildren().addAll(moneyLabel, banknoteStackPane, lifeline5050, lifelineAudience, lifelinePhone, confirmButton, surrenderButton);
         return bottomPanel;
     }
 
@@ -345,6 +357,10 @@ public class UIFactory {
 
     public Button getConfirmButton() {
         return confirmButton;
+    }
+
+    public Button getSurrenderButton() {
+        return surrenderButton;
     }
 
     public ProgressBar getTimerProgress() {

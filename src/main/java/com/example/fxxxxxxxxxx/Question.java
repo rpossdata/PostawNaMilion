@@ -22,4 +22,10 @@ public class Question {
     public int getCorrectAnswerIndex() {
         return correctAnswerIndex;
     }
+
+    public void setCorrectAnswerIndex(int correctAnswerIndex) {
+        if (correctAnswerIndex >= 0 && correctAnswerIndex < answers.length) {
+            this.correctAnswerIndex = correctAnswerIndex;
+        }
+    }
 }
