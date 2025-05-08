@@ -6,7 +6,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
-import javafx.scene.Node; // Potrzebne dla instanceof
+import javafx.scene.Node;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.Map; // <--- DODANY IMPORT DLA MAP.ENTRY
+import java.util.Map;
 
 public class GameController {
     private Label questionLabel, timerLabel, moneyLabel, levelLabel;
@@ -41,7 +41,7 @@ public class GameController {
     private Canvas particleCanvas;
     private List<Particle> particles = new ArrayList<>();
     private int timeLeft = 120;
-    private int currentQuestionIndex = 0; // Liczba ukończonych pytań/poziomów
+    private int currentQuestionIndex = 0;
     private int money = 1000000;
     private boolean lifeline5050Used = false;
     private boolean lifelineAudienceUsed = false;
@@ -54,16 +54,15 @@ public class GameController {
     private Leaderboard leaderboard;
     private String nickname;
     private boolean isGameActive = true;
-    private StackPane root; // Główny kontener layoutu
-    private VBox gameContent; // Kontener na elementy gry
+    private StackPane root;
+    private VBox gameContent;
     private static final int BANKNOTE_VALUE = 50000;
     private static final int MINIMUM_BET = 50000;
-    private static final int TOTAL_LEVELS = 10; // Całkowita liczba poziomów do przejścia
+    private static final int TOTAL_LEVELS = 10;
 
     public GameController() {
         questionLoader = new QuestionLoader();
         banknoteManager = new BanknoteManager();
-        // Inicjalizacja Leaderboard przekazując 'this' (GameController)
         leaderboard = new Leaderboard(this);
         uiFactory = new UIFactory(banknoteManager, this);
         nicknamePanel = new NicknamePanel();
@@ -72,71 +71,76 @@ public class GameController {
     public void initializeUI(StackPane root) {
         System.out.println("Inicjalizacja UI");
         this.root = root;
-        showNicknamePanel(); // Rozpocznij od panelu pseudonimu
+        showStartScreen();
     }
 
-    void showNicknamePanel() {
+    private void showStartScreen() {
+        System.out.println("Wyświetlanie ekranu startowego");
+        root.getChildren().clear();
+        StartScreen startScreen = new StartScreen(this);
+        root.getChildren().add(startScreen.getPanel());
+    }
+
+    public void showNicknamePanel() {
         System.out.println("Wyświetlanie panelu pseudonimu");
-        isGameActive = false; // Gra nie jest aktywna podczas wpisywania pseudonimu
+        isGameActive = false;
         if (timer != null) {
-            timer.stop(); // Zatrzymaj timer gry, jeśli działał
+            timer.stop();
         }
         if (particleTimer != null) {
             particleTimer.stop();
-            // particleTimer = null; // Można rozważyć, jeśli particleTimer jest tworzony na nowo w startGame
         }
-        root.getChildren().clear(); // Wyczyść główny kontener
+        if (particleCanvas != null) {
+            particleCanvas = null;
+        }
+        root.getChildren().clear();
         VBox nicknamePane = nicknamePanel.getPanel();
         nicknamePanel.getStartButton().setOnAction(e -> {
             String inputNickname = nicknamePanel.getNicknameField().getText().trim();
             if (!inputNickname.isEmpty()) {
                 nickname = inputNickname;
                 System.out.println("Pseudonim ustawiony: " + nickname);
-                startGame(); // Rozpocznij grę po podaniu pseudonimu
+                startGame();
             } else {
                 System.out.println("Pseudonim jest pusty, wyświetlanie błędu walidacji");
-                // Prosta walidacja wizualna
                 nicknamePanel.getNicknameField().setStyle("-fx-border-color: #ff5555; -fx-background-color: #2a2a4a; -fx-text-fill: #ffffff;");
             }
         });
-        root.getChildren().add(nicknamePane); // Dodaj panel pseudonimu do sceny
+        root.getChildren().add(nicknamePane);
     }
 
-    private void startGame() {
+    public void startGame() {
         System.out.println("Rozpoczynanie gry...");
-        root.getChildren().clear(); // Wyczyść poprzednią zawartość (np. panel pseudonimu)
+        root.getChildren().clear();
         isGameActive = true;
 
-        // Inicjalizacja tła z cząsteczkami
         particleCanvas = new Canvas();
-        particleCanvas.widthProperty().bind(root.widthProperty()); // Dostosuj szerokość canvas do root
-        particleCanvas.heightProperty().bind(root.heightProperty()); // Dostosuj wysokość canvas do root
+        particleCanvas.widthProperty().bind(root.widthProperty());
+        particleCanvas.heightProperty().bind(root.heightProperty());
         particles.clear();
-        for (int i = 0; i < 50; i++) { // Utwórz początkowe cząsteczki
+        for (int i = 0; i < 50; i++) {
             particles.add(new Particle(particleCanvas.getWidth(), particleCanvas.getHeight()));
         }
 
         if (particleTimer != null) {
             particleTimer.stop();
         }
-        particleTimer = new AnimationTimer() { // Timer do animacji cząsteczek
+        particleTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (particleCanvas == null || particleCanvas.getGraphicsContext2D() == null) return;
                 GraphicsContext gc = particleCanvas.getGraphicsContext2D();
-                gc.setFill(Color.web("#1a1a2e")); // Kolor tła
-                gc.fillRect(0, 0, particleCanvas.getWidth(), particleCanvas.getHeight()); // Wyczyść canvas
-                for (Particle p : new ArrayList<>(particles)) { // Użyj kopii listy dla bezpieczeństwa
+                gc.setFill(Color.web("#1a1a2e"));
+                gc.fillRect(0, 0, particleCanvas.getWidth(), particleCanvas.getHeight());
+                for (Particle p : new ArrayList<>(particles)) {
                     p.update(particleCanvas.getWidth(), particleCanvas.getHeight());
                     p.draw(gc);
                 }
             }
         };
-        particleTimer.start(); // Uruchom animację cząsteczek
+        particleTimer.start();
 
-        // Tworzenie głównej zawartości gry przez UIFactory
         gameContent = uiFactory.createGameContent(root);
-        // Pobieranie referencji do elementów UI z UIFactory
         questionLabel = uiFactory.getQuestionLabel();
         timerLabel = uiFactory.getTimerLabel();
         moneyLabel = uiFactory.getMoneyLabel();
@@ -154,17 +158,14 @@ public class GameController {
         levelProgress = uiFactory.getLevelProgress();
         banknoteStackPane = uiFactory.getBanknoteStackPane();
 
-        // Ustawianie akcji dla przycisków
         if (confirmButton != null) confirmButton.setOnAction(e -> confirmAnswer());
         if (surrenderButton != null) surrenderButton.setOnAction(e -> handleSurrender());
         if (lifeline5050 != null) lifeline5050.setOnAction(e -> useLifeline5050());
         if (lifelineAudience != null) lifelineAudience.setOnAction(e -> useLifelineAudience());
         if (lifelinePhone != null) lifelinePhone.setOnAction(e -> useLifelinePhone());
 
-        // Dodawanie canvas cząsteczek (tło) i zawartości gry do root
         root.getChildren().addAll(particleCanvas, gameContent);
 
-        // Nasłuchiwacze zmiany rozmiaru canvas dla cząsteczek
         particleCanvas.widthProperty().addListener((obs, oldWidth, newWidth) -> {
             if (particles != null) {
                 for (Particle p : particles) p.adjustForNewWidth(newWidth.doubleValue());
@@ -176,43 +177,40 @@ public class GameController {
             }
         });
 
-        questionLoader.loadQuestions(); // Załaduj pytania
+        questionLoader.loadQuestions();
         if (timer != null) {
             timer.stop();
         }
-        // Timer główny gry (odliczanie czasu na odpowiedź)
         timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
         timer.setCycleCount(Timeline.INDEFINITE);
 
-        resetGameState(); // Zresetuj stan gry (pieniądze, poziom itp.)
-        loadNextQuestion(); // Załaduj pierwsze pytanie
-        timer.play(); // Uruchom timer gry
+        resetGameState();
+        loadNextQuestion();
+        timer.play();
         System.out.println("Gra rozpoczęta.");
     }
 
     private void resetGameState() {
         System.out.println("Resetowanie stanu gry.");
         money = 1000000;
-        currentQuestionIndex = 0; // Gracz nie ukończył jeszcze żadnego poziomu
+        currentQuestionIndex = 0;
         lifeline5050Used = false;
         lifelineAudienceUsed = false;
         lifelinePhoneUsed = false;
         isGameActive = true;
 
-        timeLeft = (currentQuestionIndex >= 5 ? 90 : 120); // Czas na odpowiedź
+        timeLeft = (currentQuestionIndex >= 5 ? 90 : 120);
         if (timerLabel != null) timerLabel.setText(timeLeft + "s");
         if (timerProgress != null) timerProgress.setProgress(1.0);
         if (moneyLabel != null) moneyLabel.setText(formatCurrencyDisplay(money));
-        if (levelLabel != null) levelLabel.setText("Poziom: " + (currentQuestionIndex + 1)); // Wyświetlany poziom to aktualny + 1
+        if (levelLabel != null) levelLabel.setText("Poziom: " + (currentQuestionIndex + 1));
         if (levelProgress != null) levelProgress.setProgress((currentQuestionIndex + 1.0) / TOTAL_LEVELS);
 
-        // Reset kół ratunkowych
         if (lifeline5050 != null) { lifeline5050.setDisable(lifeline5050Used); lifeline5050.setOpacity(lifeline5050Used ? 0.5 : 1.0); }
         if (lifelineAudience != null) { lifelineAudience.setDisable(lifelineAudienceUsed); lifelineAudience.setOpacity(lifelineAudienceUsed ? 0.5 : 1.0); }
         if (lifelinePhone != null) { lifelinePhone.setDisable(lifelinePhoneUsed); lifelinePhone.setOpacity(lifelinePhoneUsed ? 0.5 : 1.0); }
         if (confirmButton != null) confirmButton.setDisable(false);
 
-        // Reset banknotów i stawek
         if (banknoteStackPane != null) banknoteStackPane.getChildren().clear();
         if (answerDropPanes != null) {
             for (Pane pane : answerDropPanes) if (pane != null) pane.getChildren().clear();
@@ -223,11 +221,10 @@ public class GameController {
         System.out.println("Stan gry zresetowany. Pieniądze: " + money + ", Ukończone poziomy: " + currentQuestionIndex);
     }
 
-    // Metoda wywoływana przy maksymalizacji okna (może być potrzebna do przerysowania cząsteczek)
     public void handleWindowMaximized() {
         if (particleCanvas == null || particles == null) return;
         particles.clear();
-        for (int i = 0; i < 50; i++) { // Można dostosować liczbę cząsteczek
+        for (int i = 0; i < 50; i++) {
             particles.add(new Particle(particleCanvas.getWidth(), particleCanvas.getHeight(), true));
         }
     }
@@ -240,7 +237,6 @@ public class GameController {
         double timeForQuestion = (currentQuestionIndex >= 5 ? 90.0 : 120.0);
         if (timerProgress != null) timerProgress.setProgress(timeLeft / timeForQuestion);
 
-        // Efekt migania etykiety czasu, gdy jest go mało
         if (timeLeft <= 30 && timeLeft > 0 && timeLeft % 2 == 0) {
             if (timerLabel != null) {
                 FadeTransition ft = new FadeTransition(Duration.millis(200), timerLabel);
@@ -249,8 +245,6 @@ public class GameController {
                 ft.play();
             }
         } else if (timeLeft <= 0) {
-            // Czas minął, gracz traci pieniądze (lub wszystkie postawione)
-            // money = 0; // Zgodnie z logiką, gracz traci wszystko co postawił, a niekoniecznie całość
             endGame("Czas minął! Straciłeś wszystkie pieniądze.");
         }
     }
@@ -258,14 +252,13 @@ public class GameController {
     private void loadNextQuestion() {
         if (!isGameActive) return;
 
-        // Sprawdzenie, czy gracz ukończył wszystkie poziomy
         if (currentQuestionIndex >= TOTAL_LEVELS) {
-            triggerConfetti(); // Efekt konfetti dla zwycięzcy
+            triggerConfetti();
             endGame("Gratulacje! Wygrałeś " + formatCurrencyDisplay(money) + " zł przechodząc wszystkie poziomy!");
             return;
         }
 
-        int levelToLoad = currentQuestionIndex + 1; // Poziom, który ma być załadowany (numeracja od 1)
+        int levelToLoad = currentQuestionIndex + 1;
         System.out.println("Ładowanie pytania dla poziomu: " + levelToLoad + " (ukończono: " + currentQuestionIndex + ")");
 
         if (levelLabel != null) levelLabel.setText("Poziom: " + levelToLoad);
@@ -277,7 +270,6 @@ public class GameController {
             endGame("Błąd: Nie udało się załadować pytania dla poziomu " + levelToLoad + ". Koniec gry.");
             return;
         }
-        // Sprawdzenie poprawności danych pytania
         if (currentQuestion.getAnswers() == null || currentQuestion.getCorrectAnswerIndex() < 0 || currentQuestion.getCorrectAnswerIndex() >= currentQuestion.getAnswers().length) {
             endGame("Błąd: Pytanie dla poziomu " + levelToLoad + " ma nieprawidłowe dane odpowiedzi. Koniec gry.");
             return;
@@ -285,7 +277,6 @@ public class GameController {
 
         if (questionLabel != null) questionLabel.setText(currentQuestion.getText());
 
-        // Animacja pojawiania się pytania
         if (questionLabel != null) {
             TranslateTransition tt = new TranslateTransition(Duration.millis(800), questionLabel);
             tt.setFromY(-50); tt.setToY(0);
@@ -293,7 +284,6 @@ public class GameController {
             tt.play();
         }
 
-        // Tasowanie odpowiedzi
         List<Integer> indices = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
         Collections.shuffle(indices);
         int shuffledCorrectAnswerIndex = -1;
@@ -310,46 +300,42 @@ public class GameController {
             }
             answerLabels[i].setText(originalAnswers[originalIndex]);
             if (originalAnswers[originalIndex].equals(correctAnswerText)) {
-                shuffledCorrectAnswerIndex = i; // Zapamiętaj nowy (potasowany) indeks poprawnej odpowiedzi
+                shuffledCorrectAnswerIndex = i;
             }
 
-            // Resetowanie stylu i widoczności odpowiedzi
             answerLabels[i].setStyle("-fx-font-size: 16pt; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #2a2a4a; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 5, 0, 2, 2);");
             answerLabels[i].setVisible(true);
             answerLabels[i].setOpacity(1.0);
             answerLabels[i].setEffect(null);
             if (answerDropPanes[i] != null) {
                 answerDropPanes[i].setVisible(true);
-                answerDropPanes[i].getChildren().clear(); // Wyczyść banknoty z poprzedniego pytania
+                answerDropPanes[i].getChildren().clear();
             }
             if (answerStakeLabels[i] != null) {
-                answerStakeLabels[i].setText("0 zł"); // Zresetuj stawkę
+                answerStakeLabels[i].setText("0 zł");
             }
 
-            // Animacja pojawiania się odpowiedzi
             ScaleTransition st = new ScaleTransition(Duration.millis(500), answerLabels[i]);
             st.setFromX(0.1); st.setFromY(0.1);
             st.setToX(1.0); st.setToY(1.0);
             answerLabels[i].setScaleX(0.1); answerLabels[i].setScaleY(0.1);
             st.play();
         }
-        currentQuestion.setCorrectAnswerIndex(shuffledCorrectAnswerIndex); // Ustaw poprawny indeks po potasowaniu
+        currentQuestion.setCorrectAnswerIndex(shuffledCorrectAnswerIndex);
 
-        // Inicjalizacja banknotów gracza
         if (banknoteManager != null && banknoteStackPane != null) {
             banknoteManager.initializeBanknotes(money, banknoteStackPane);
         }
 
-        // Reset timera i przycisku potwierdzenia
         timeLeft = currentQuestionIndex >= 5 ? 90 : 120;
         if (timerLabel != null) timerLabel.setText(timeLeft + "s");
         if (timerProgress != null) timerProgress.setProgress(1.0);
         if (banknoteManager != null) {
             banknoteManager.updateRemainingMoney(moneyLabel, answerStakeLabels, answerDropPanes);
         }
-        if (confirmButton != null) confirmButton.setDisable(false); // Odblokuj przycisk potwierdzenia
+        if (confirmButton != null) confirmButton.setDisable(false);
 
-        setupAllInButtons(); // Ustaw akcje dla przycisków "All In"
+        setupAllInButtons();
         System.out.println("Pytanie załadowane. Poprawna odpowiedź (po potasowaniu) ma indeks: " + currentQuestion.getCorrectAnswerIndex());
     }
 
@@ -362,15 +348,12 @@ public class GameController {
                     if (!isGameActive || banknoteStackPane == null || answerDropPanes == null || index >= answerDropPanes.length || answerDropPanes[index] == null) return;
                     System.out.println("Przycisk 'All In' wciśnięty dla odpowiedzi o indeksie: " + index);
 
-                    // 1. Przenieś banknoty z INNYCH paneli odpowiedzi z powrotem na główny stos
                     for (int j = 0; j < answerDropPanes.length; j++) {
                         if (j != index && answerDropPanes[j] != null) {
                             banknoteManager.moveBanknotesFromPaneToStack(answerDropPanes[j], banknoteStackPane);
                         }
                     }
-                    // 2. Przenieś wszystkie banknoty z głównego stosu do wybranego panelu odpowiedzi
                     banknoteManager.moveAllBanknotesToPane(answerDropPanes[index], banknoteStackPane);
-                    // 3. Zaktualizuj UI (stawki, pozostałe pieniądze)
                     banknoteManager.updateRemainingMoney(moneyLabel, answerStakeLabels, answerDropPanes);
                 });
             }
@@ -385,17 +368,16 @@ public class GameController {
             return;
         }
 
-        if (confirmButton != null) confirmButton.setDisable(true); // Zablokuj przycisk po potwierdzeniu
+        if (confirmButton != null) confirmButton.setDisable(true);
 
         int totalStake = 0;
-        int correctStake = 0; // Pieniądze postawione na poprawną odpowiedź
+        int correctStake = 0;
 
-        // Obliczanie całkowitej stawki i stawki na poprawnej odpowiedzi
         if (answerDropPanes != null) {
             for (int i = 0; i < 4; i++) {
                 if (answerDropPanes[i] == null) continue;
                 int stakeInPane = 0;
-                for(Map.Entry<Label, Pane> entry : banknoteManager.getBanknoteLocations().entrySet()){ // Wymaga importu java.util.Map
+                for(Map.Entry<Label, Pane> entry : banknoteManager.getBanknoteLocations().entrySet()){
                     if(entry.getValue() == answerDropPanes[i]){
                         stakeInPane += BANKNOTE_VALUE;
                     }
@@ -408,10 +390,9 @@ public class GameController {
         }
         System.out.println("Potwierdzono odpowiedź. Całkowita stawka: " + totalStake + ", Stawka na poprawną: " + correctStake);
 
-        // Sprawdzenie minimalnej stawki
         if (totalStake < MINIMUM_BET && money > 0) {
             showError("Musisz postawić co najmniej " + formatCurrencyDisplay(MINIMUM_BET) + " zł na odpowiedzi.");
-            if (confirmButton != null) confirmButton.setDisable(false); // Odblokuj przycisk
+            if (confirmButton != null) confirmButton.setDisable(false);
             return;
         }
 
@@ -419,33 +400,30 @@ public class GameController {
         final String redStyle = "-fx-font-size: 18pt; -fx-font-weight: bold; -fx-text-fill: #ffffff; -fx-background-color: #F44336; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(244,67,54,0.7), 10, 0, 0, 3);";
         int correctAnswerVisualIndex = currentQuestion.getCorrectAnswerIndex();
 
-        if (correctStake > 0) { // Poprawna odpowiedź I postawiono na nią pieniądze
+        if (correctStake > 0) {
             System.out.println("Poprawna odpowiedź!");
-            money = correctStake; // Gracz zachowuje tylko to, co postawił na poprawną
+            money = correctStake;
             if (moneyLabel != null) moneyLabel.setText(formatCurrencyDisplay(money));
             if (banknoteManager != null) banknoteManager.updateRemainingMoney(moneyLabel, answerStakeLabels, answerDropPanes);
 
-            // Podświetl poprawną odpowiedź na zielono
             if (answerLabels != null && correctAnswerVisualIndex >= 0 && correctAnswerVisualIndex < answerLabels.length && answerLabels[correctAnswerVisualIndex] != null) {
                 answerLabels[correctAnswerVisualIndex].setStyle(greenStyle);
             }
 
-            // Opóźnienie przed załadowaniem następnego pytania
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-                currentQuestionIndex++; // Zwiększ liczbę ukończonych poziomów
+                currentQuestionIndex++;
                 loadNextQuestion();
             }));
             delay.play();
-        } else { // Błędna odpowiedź LUB nie postawiono na poprawną odpowiedź
+        } else {
             System.out.println("Błędna odpowiedź lub brak stawki na poprawną.");
-            money = 0; // Gracz traci wszystkie pieniądze (te które obstawił, a reszta przepada)
+            money = 0;
             if (moneyLabel != null) moneyLabel.setText(formatCurrencyDisplay(money));
             if (banknoteManager != null) {
                 if (banknoteStackPane != null) banknoteManager.initializeBanknotes(0, banknoteStackPane);
                 banknoteManager.updateRemainingMoney(moneyLabel, answerStakeLabels, answerDropPanes);
             }
 
-            // Podświetl poprawną odpowiedź na zielono, a błędne, na które postawiono, na czerwono
             if (answerLabels != null && correctAnswerVisualIndex >=0 && correctAnswerVisualIndex < answerLabels.length && answerLabels[correctAnswerVisualIndex] != null) {
                 answerLabels[correctAnswerVisualIndex].setStyle(greenStyle);
             }
@@ -464,7 +442,6 @@ public class GameController {
                     }
                 }
             }
-            // Opóźnienie przed zakończeniem gry
             Timeline delay = new Timeline(new KeyFrame(Duration.seconds(3), event -> {
                 endGame("Zła odpowiedź! Straciłeś wszystkie pieniądze.");
             }));
@@ -475,8 +452,6 @@ public class GameController {
     void handleSurrender() {
         if (!isGameActive) return;
         System.out.println("Gracz się poddał.");
-        // Pieniądze, które gracz zachowuje, to te, które nie zostały postawione na żadną odpowiedź
-        // (czyli te na banknoteStackPane)
         int moneyKept = 0;
         if (banknoteManager != null && banknoteManager.getBanknoteLocations() != null && banknoteStackPane != null) {
             for (Map.Entry<Label, Pane> entry : banknoteManager.getBanknoteLocations().entrySet()) {
@@ -485,18 +460,16 @@ public class GameController {
                 }
             }
         }
-        money = moneyKept; // Ustaw aktualne pieniądze na te zachowane
+        money = moneyKept;
         endGame("Poddałeś się. Twój wynik to " + formatCurrencyDisplay(money) + " zł.");
     }
 
     private void endGame(String message) {
-        // Sprawdzenie, czy panel rankingu już jest wyświetlany (aby uniknąć wielokrotnego dodawania)
         boolean alreadyOnLeaderboardScreen = false;
         if (root != null && !root.getChildren().isEmpty()) {
-            Node firstChild = root.getChildren().get(root.getChildren().size() -1); // Sprawdź ostatni dodany element
-            if (firstChild instanceof VBox) { // Zakładamy, że panel rankingu to VBox
+            Node firstChild = root.getChildren().get(root.getChildren().size() -1);
+            if (firstChild instanceof VBox) {
                 VBox currentRootVBox = (VBox) firstChild;
-                // Proste sprawdzenie po tytule - można ulepszyć, np. przez ID lub dedykowaną flagę
                 if (!currentRootVBox.getChildren().isEmpty() && currentRootVBox.getChildren().get(0) instanceof Label) {
                     if (((Label) currentRootVBox.getChildren().get(0)).getText().equals("Ranking Graczy")) {
                         alreadyOnLeaderboardScreen = true;
@@ -510,39 +483,36 @@ public class GameController {
             return;
         }
         if (!isGameActive && message.toLowerCase().contains("gratulacje") && alreadyOnLeaderboardScreen){
-            // Jeśli wygrana i już jest ranking, to też można pominąć, chyba że chcemy odświeżyć
             System.out.println("endGame (wygrana) wywołane ponownie, gdy ranking jest już wyświetlany. Pomijanie.");
             return;
         }
 
-        isGameActive = false; // Gra zakończona
+        isGameActive = false;
         if (timer != null) {
-            timer.stop(); // Zatrzymaj timer gry
+            timer.stop();
         }
-        // particleTimer może dalej działać w tle
 
         System.out.println("Gra zakończona: " + message);
         System.out.println("Zapisywanie wyniku: Pseudonim: " + nickname + ", Pieniądze: " + money + ", Ukończone poziomy: " + currentQuestionIndex);
 
         if (leaderboard != null && nickname != null && !nickname.trim().isEmpty()) {
-            leaderboard.saveScore(nickname, money, currentQuestionIndex); // Zapisz wynik
+            leaderboard.saveScore(nickname, money, currentQuestionIndex);
         } else {
             System.err.println("Nie można zapisać wyniku: tablica wyników lub pseudonim jest null/pusty. Pseudonim: " + nickname);
         }
 
-        root.getChildren().clear(); // Wyczyść główny kontener (usuń elementy gry)
+        root.getChildren().clear();
 
         if (particleCanvas != null) {
-            root.getChildren().add(particleCanvas); // Dodaj tło z cząsteczkami
+            root.getChildren().add(particleCanvas);
         }
 
         if (leaderboard != null) {
-            VBox leaderboardPane = leaderboard.createLeaderboardPanel(); // Utwórz panel rankingu
+            VBox leaderboardPane = leaderboard.createLeaderboardPanel();
             if (leaderboardPane != null) {
-                root.getChildren().add(leaderboardPane); // Dodaj panel rankingu do sceny
+                root.getChildren().add(leaderboardPane);
                 System.out.println("Panel rankingu dodany do sceny.");
             } else {
-                // Awaryjne wyświetlenie, jeśli panel rankingu jest null
                 System.err.println("KRYTYCZNY BŁĄD: Panel rankingu był null. Nie można wyświetlić rankingu.");
                 Label errorLabel = new Label("Nie można załadować tablicy wyników.\nSprawdź konsolę po więcej informacji.");
                 errorLabel.setStyle("-fx-font-size: 18pt; -fx-text-fill: red; -fx-text-alignment: center;");
@@ -550,7 +520,6 @@ public class GameController {
                 root.getChildren().add(errorLabel);
             }
         } else {
-            // Fallback, jeśli obiekt leaderboard jest null (nie powinno się zdarzyć)
             Label gameOverLabel = new Label("Koniec Gry!\n" + message + "\nTwój wynik: " + formatCurrencyDisplay(money) + " zł");
             gameOverLabel.setStyle("-fx-font-size: 24pt; -fx-text-fill: white; -fx-alignment: center; -fx-text-alignment: center;");
             StackPane.setAlignment(gameOverLabel, Pos.CENTER);
@@ -559,8 +528,8 @@ public class GameController {
     }
 
     public void closeLeaderboard() {
-        System.out.println("Zamykanie tabeli wyników, pokazywanie panelu pseudonimu.");
-        showNicknamePanel(); // Wróć do panelu wpisywania pseudonimu
+        System.out.println("Zamykanie tabeli wyników, pokazywanie ekranu startowego.");
+        showStartScreen();
     }
 
     public void showError(String message) {
@@ -577,24 +546,19 @@ public class GameController {
     }
 
     private String formatCurrencyDisplay(int amount) {
-        return String.format("%,d zł", amount); // Dodaj "zł" do formatowania waluty
+        return String.format("%,d zł", amount);
     }
 
     private void triggerConfetti() {
-        // Prosty placeholder - można tu dodać bardziej zaawansowany efekt
         System.out.println("Gratulacje! *efekt konfetti*");
-        // Można np. tymczasowo dodać więcej cząsteczek lub zmienić ich kolor
         if (particles != null && particleCanvas != null) {
-            for (int i = 0; i < 100; i++) { // Dodaj więcej cząsteczek dla efektu
+            for (int i = 0; i < 100; i++) {
                 Particle p = new Particle(particleCanvas.getWidth(), particleCanvas.getHeight());
-                // Można by zmodyfikować Particle, aby miały różne kolory
-                // p.setColor(Color.GOLD); // Przykładowo, jeśli Particle ma metodę setColor
                 particles.add(p);
             }
         }
     }
 
-    // Gettery dla UIFactory
     public Label getQuestionLabel() { return questionLabel; }
     public Label getTimerLabel() { return timerLabel; }
     public Label getMoneyLabel() { return moneyLabel; }
@@ -611,8 +575,9 @@ public class GameController {
     public ProgressBar getTimerProgress() { return timerProgress; }
     public ProgressBar getLevelProgress() { return levelProgress; }
     public Pane getBanknoteStackPane() { return banknoteStackPane; }
+    public Leaderboard getLeaderboard() { return leaderboard; }
+    public StackPane getRoot() { return root; }
 
-    // Metody dla kół ratunkowych
     public void useLifeline5050() {
         if(lifeline5050Used || !isGameActive || currentQuestion == null || answerLabels == null) return;
         if (currentQuestion.getCorrectAnswerIndex() < 0 || currentQuestion.getCorrectAnswerIndex() >= 4) {
@@ -622,7 +587,7 @@ public class GameController {
         System.out.println("Użyto koła 50/50");
         List<Integer> wrongAnswerIndices = new ArrayList<>();
         for(int i=0; i<4; i++) {
-            if (answerLabels[i] == null || !answerLabels[i].isVisible()) continue; // Pomijaj ukryte lub nieistniejące
+            if (answerLabels[i] == null || !answerLabels[i].isVisible()) continue;
             if(i != currentQuestion.getCorrectAnswerIndex()) {
                 wrongAnswerIndices.add(i);
             }
@@ -631,7 +596,6 @@ public class GameController {
         int hiddenCount = 0;
         for(int i=0; i < wrongAnswerIndices.size() && hiddenCount < 2; i++) {
             int indexToHide = wrongAnswerIndices.get(i);
-            // Sprawdzenie, czy etykieta i panel istnieją i są widoczne
             if (indexToHide >= 0 && indexToHide < 4 && answerLabels[indexToHide] != null && answerLabels[indexToHide].isVisible()) {
                 answerLabels[indexToHide].setVisible(false);
                 if (answerDropPanes != null && indexToHide < answerDropPanes.length && answerDropPanes[indexToHide] != null) {
@@ -659,9 +623,9 @@ public class GameController {
         for(int i=0; i<4; i++) {
             if (answerLabels[i] == null || !answerLabels[i].isVisible()) continue;
             if(i == currentQuestion.getCorrectAnswerIndex()) {
-                votes[i] = 20 + rand.nextInt(51); // 20-70% dla poprawnej
+                votes[i] = 20 + rand.nextInt(51);
             } else {
-                votes[i] = rand.nextInt(31); // 0-30% dla błędnych
+                votes[i] = rand.nextInt(31);
             }
             totalVotesCalculated += votes[i];
         }
@@ -690,7 +654,7 @@ public class GameController {
         String correctAnswerText = currentQuestion.getAnswers()[currentQuestion.getCorrectAnswerIndex()];
         Random rand = new Random();
         String friendSuggestion;
-        if (rand.nextInt(100) < 75) { // 75% szans na poprawną
+        if (rand.nextInt(100) < 75) {
             friendSuggestion = correctAnswerText;
         } else {
             List<String> allAnswers = new ArrayList<>(Arrays.asList(currentQuestion.getAnswers()));
@@ -698,7 +662,7 @@ public class GameController {
             if (!allAnswers.isEmpty()) {
                 friendSuggestion = allAnswers.get(rand.nextInt(allAnswers.size()));
             } else {
-                friendSuggestion = correctAnswerText; // Fallback
+                friendSuggestion = correctAnswerText;
             }
         }
         showInfo("Telefon do przyjaciela", "Twój przyjaciel sugeruje: " + friendSuggestion);

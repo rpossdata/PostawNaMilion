@@ -1,6 +1,7 @@
-eqweqw,1000000,0
-dqsdas,1000000,1
-data,1000000,0
-data,1000000,0
-data,1000000,0
-tps,1000000,2
+dasdsad,1000000,0
+dsadas,1000000,0
+dsadsadsadasda,1000000,0
+dsada,1000000,0
+dsadsa,1000000,0
+dsadas,1000000,0
+dasdsa,1000000,0
